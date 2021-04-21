@@ -45,13 +45,18 @@ The following properties can be configured:
 	<tbody>
 		<tr>
 			<td><code>triggers</code></td>
-			<td>A map of events and optional filters. A function can
-				include a function which can return a boolean or a
-				Promise that resolve to a Boolean.  If no function
+			<td>A map of events and optional filters. An entry can
+				include a function which can return a value or a
+				Promise that resolve to a value.  If the value is true,
+				a refresh is trigged.  If no function
 				is provided, the event always triggers a refresh.
-				<br>
-				**Example:**
-				`"USER_PRESENCE": (payload, sender, state) => payload`
+				<br><br>
+				The <code>state</code> argument is initially an empty
+				object; your code can add data to it, and will receive
+				the same object back on future runs. Because this state
+				is local to the browser, a refresh will clear it.
+				<br><br>
+				<b>Example:</b> <code>"USER_PRESENCE": (payload, sender, state) => payload</code>
 			</td>
 	</tbody>
 </table>
